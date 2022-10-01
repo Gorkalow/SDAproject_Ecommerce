@@ -13,7 +13,7 @@
                         <th><h5>Items: </h5></th>
                         <th><h5>Total: SUM_PRICE</h5></th>
                         <th>
-                            <a class="btn btn-succes checkout-button" href="{% url 'checkout' %}">Checkout</a>
+                            <a class="btn btn-success checkout-button" href="{% url 'checkout' %}">Checkout</a>
 
                         </th>
 
@@ -24,8 +24,16 @@
             <br>
             <div class="box-element">
                 <div class="cart-row">
-                    <div class="cart-row-line cart-row-line-img "><img class="row-image" src="{% static 'images/640x360.png' %}"></div>
-                    <div class="cart-row-line cart-row-line-product"><p>Product 1</p></div>
+                    <div class="cart-row-line-2"></div>
+                    <div class="cart-row-line-2"><strong>Item</strong></div>
+                    <div class="cart-row-line"><strong>Price</strong></div>
+                    <div class="cart-row-line"><strong>Quantity</strong></div>
+                    <div class="cart-row-line"><strong>Total</strong></div>
+
+                </div>
+                <div class="cart-row">
+                    <div class="cart-row-line-2"><img class="row-image" src="{% static 'images/640x360.png' %}"></div>
+                    <div class="cart-row-line-2"><p>Product 1</p></div>
                     <div class="cart-row-line">Price</div>
                     <div class="cart-row-line">
                         <p class="quantity">2</p>
