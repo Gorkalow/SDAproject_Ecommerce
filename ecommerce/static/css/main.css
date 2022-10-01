@@ -109,3 +109,16 @@ h1,h2,h3,h4,h5,h6{
 
 }
 
+.checkout-button{
+	float: right;
+	margin: 0;
+	padding: 0
+}
+
+.cart-row-line{
+	flex: 1;
+}
+
+.cart-row-line-img, .cart-row-line-product{
+	flex: 2;
+}
