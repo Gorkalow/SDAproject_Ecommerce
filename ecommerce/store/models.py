@@ -17,8 +17,18 @@ class Product(Model):
     price = FloatField()
     digital = BooleanField(default=False, null=True, blank=True)
     image = ImageField(null=True, blank=True)
+
     def __str__(self):
         return self.name
+
+    #property decorator let us access the function as attribute/variable, not as a method/function.
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
 
 
 class Order(Model):
