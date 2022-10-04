@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import OneToOneField, CharField, CASCADE, Model, \
-    FloatField, BooleanField, ForeignKey, SET_NULL, DateField, IntegerField
+    FloatField, BooleanField, ForeignKey, SET_NULL, DateField, IntegerField, ImageField
 
 
 # Create your models here.
@@ -16,7 +16,7 @@ class Product(Model):
     name = CharField(max_length=200)
     price = FloatField()
     digital = BooleanField(default=False, null=True, blank=True)
-
+    image = ImageField(null=True, blank=True)
     def __str__(self):
         return self.name
 
