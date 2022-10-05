@@ -11,6 +11,9 @@ class Customer(Model):
     name = CharField(max_length=200, null=True)
     email = CharField(max_length=200)
 
+    def __str__(self):
+        return self.name
+
 
 class Product(Model):
     name = CharField(max_length=200)
@@ -32,8 +35,10 @@ class Product(Model):
 
 
 class Order(Model):
+    # po co nam zamówienie gdy nie ma klienta?
+    #Klient doda się później. Na szkicu zamówienia możemy wstępnie pracować przez panel administracyjny.
     customer = ForeignKey(Customer, on_delete=SET_NULL, blank=True,
-                          null=True)  # po co nam zamówienie gdy nie ma klienta?
+                          null=True)
     date_order = DateField(auto_now_add=True)
     complete = BooleanField(default=False, null=True, blank=False)
     transaction_id = CharField(max_length=200, null=True)
