@@ -11,7 +11,7 @@
                 <table class="table">
                     <tr>
                         <th><h5>Items: {{order.get_cart_items}}</h5></th>
-                        <th><h5>Total: {{order.get_cart_total|floatformat:2}}</h5></th>
+                        <th><h5>Total: ${{order.get_cart_total|floatformat:2}}</h5></th>
                         <th>
                             <a class="btn btn-success checkout-button" href="{% url 'checkout' %}">Checkout</a>
 
