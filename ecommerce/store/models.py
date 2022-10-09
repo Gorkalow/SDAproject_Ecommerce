@@ -35,10 +35,9 @@ class Product(Model):
 
 
 class Order(Model):
-    # po co nam zamówienie gdy nie ma klienta?
-    #Klient doda się później. Na szkicu zamówienia możemy wstępnie pracować przez panel administracyjny.
-    customer = ForeignKey(Customer, on_delete=SET_NULL, blank=True,
-                          null=True)
+    # q: po co nam zamówienie gdy nie ma klienta?
+    # a: Klient doda się później. Na szkicu zamówienia możemy wstępnie pracować przez panel administracyjny.
+    customer = ForeignKey(Customer, on_delete=SET_NULL, blank=True, null=True)
     date_order = DateField(auto_now_add=True)
     complete = BooleanField(default=False, null=True, blank=False)
     transaction_id = CharField(max_length=200, null=True)
@@ -46,6 +45,14 @@ class Order(Model):
     def __str__(self):
         return str(self.id)
 
+    @property
+    def shipping(self):
+        shipping = False
+        orderitems = self.orderitem_set.all()
+        for i in orderitems:
+            if not i.product.digital:
+                shipping = True
+        return shipping
     @property
     def get_cart_total(self):
         orderitems = self.orderitem_set.all()

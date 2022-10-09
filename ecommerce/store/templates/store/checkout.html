@@ -1,9 +1,11 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
+
     <div class="row">
         <div class="col-lg-6">
             <div class="box-element" id="form-wrapper">
+                {% csrf_token %}
                 <form id="form">
                     <div id="user-info">
                         <div class="form-field">
@@ -44,6 +46,7 @@
             <br>
             <div class="box-element hidden" id="payment-info">
                 <small>Paypal Options</small>
+
             </div>
 
         </div>
@@ -67,4 +70,21 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        var shipping = '{{order.shipping}}'
+
+        if(shipping == 'False'){
+            document.getElementById('shipping-info').innerHTML = ''
+        }
+
+        var form = document.getElementById('form')
+        form.addEventListener('submit', function(e){
+            e.preventDefault()
+            console.log('Form Submitted...')
+            document.getElementById('form-button').classList.add("hidden");
+            document.getElementById('payment-info').classList.remove("hidden");
+        })
+    </script>
+
 {% endblock content %}
