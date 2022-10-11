@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import OneToOneField, CharField, CASCADE, Model, \
-    FloatField, BooleanField, ForeignKey, SET_NULL, DateField, IntegerField, ImageField
+    DecimalField, BooleanField, ForeignKey, SET_NULL, DateField, IntegerField, ImageField
 
 
 # Create your models here.
@@ -17,14 +17,14 @@ class Customer(Model):
 
 class Product(Model):
     name = CharField(max_length=200)
-    price = FloatField()
+    price = DecimalField(max_digits=7, decimal_places=2)
     digital = BooleanField(default=False, null=True, blank=True)
     image = ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
 
-    #property decorator let us access the function as attribute/variable, not as a method/function.
+    # property decorator let us access the function as attribute/variable, not as a method/function.
     @property
     def imageURL(self):
         try:
@@ -53,6 +53,7 @@ class Order(Model):
             if not i.product.digital:
                 shipping = True
         return shipping
+
     @property
     def get_cart_total(self):
         orderitems = self.orderitem_set.all()
@@ -64,6 +65,7 @@ class Order(Model):
         orderitems = self.orderitem_set.all()
         total = sum([item.quantity for item in orderitems])
         return total
+
 
 class OrderItem(Model):
     product = ForeignKey(Product, on_delete=SET_NULL, blank=True, null=True)
